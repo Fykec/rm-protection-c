@@ -15,18 +15,13 @@ clean:
 	rm -f *.o
 	rm -rf build
 
-protect: protect.o common.o build/static build/dynamic
-	$(CC) $(CFLAGS) -o build/static/protect --static protect.o common.o
+protect: protect.o common.o build/dynamic
 	$(CC) $(CFLAGS) -o build/dynamic/protect protect.o common.o
-	strip build/static/protect build/dynamic/protect
+	strip  build/dynamic/protect
 
-rm-p: rm_p.o common.o build/static build/dynamic
-	$(CC) $(CFLAGS) -o build/static/rm-p --static rm_p.o common.o
+rm-p: rm_p.o common.o build/dynamic
 	$(CC) $(CFLAGS) -o build/dynamic/rm-p rm_p.o common.o
-	strip build/static/rm-p build/dynamic/rm-p
+	strip  build/dynamic/rm-p
 
 build/dynamic:
 	mkdir -p build/dynamic
-
-build/static:
-	mkdir -p build/static
